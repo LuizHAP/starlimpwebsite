@@ -20,7 +20,12 @@ const WHATSAPP_NUMBER = "5511975137031";
 const WHATSAPP_DISPLAY = "(11) 97513-7031";
 const PHONE_DISPLAY = "(11) 4526-1003";
 const PHONE_DIGITS = "1145261003";
-const WHATSAPP_DEFAULT_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=Ol%C3%A1%20Star%20Limp!%20Gostaria%20de%20fazer%20um%20pedido.`;
+
+function whatsappHref(message = "Olá Star Limp! Gostaria de fazer um pedido.") {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+}
+
+const WHATSAPP_DEFAULT_HREF = whatsappHref();
 const PHONE_TEL_HREF = `tel:+55${PHONE_DIGITS}`;
 
 const CATEGORIES: Array<{
@@ -144,9 +149,14 @@ function Nav({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }
         >
           {dark ? <SunIcon /> : <MoonIcon />}
         </button>
-        <a href="#contato" className="sl-nav-cta">
+        <a
+          href={WHATSAPP_DEFAULT_HREF}
+          target="_blank"
+          rel="noreferrer"
+          className="sl-nav-cta"
+        >
+          <WhatsIcon size={16} color="currentColor" />
           Fazer pedido
-          <ArrowRight size={16} />
         </a>
         <button
           type="button"
@@ -202,7 +212,9 @@ function Nav({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }
               {dark ? "Modo claro" : "Modo escuro"}
             </button>
             <a
-              href="#contato"
+              href={WHATSAPP_DEFAULT_HREF}
+              target="_blank"
+              rel="noreferrer"
               className="sl-btn sl-btn-primary"
               onClick={() => setOpen(false)}
               style={{ justifyContent: "center" }}
@@ -253,7 +265,12 @@ function Hero({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void 
             WhatsApp para Várzea Paulista, Jundiaí, Campo Limpo e Itupeva.
           </p>
           <div className="sl-hero-ctas">
-            <a className="sl-btn sl-btn-primary" href="#contato">
+            <a
+              className="sl-btn sl-btn-primary"
+              href={WHATSAPP_DEFAULT_HREF}
+              target="_blank"
+              rel="noreferrer"
+            >
               <WhatsIcon size={20} />
               Pedir pelo WhatsApp
             </a>
@@ -339,9 +356,13 @@ function CategoryCard({ cat, idx }: { cat: (typeof CATEGORIES)[number]; idx: num
     ? "linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--sl-accent) 80%, transparent) 100%)"
     : "linear-gradient(180deg, transparent 30%, color-mix(in srgb, var(--sl-primary) 80%, transparent) 100%)";
 
+  const message = `Olá Star Limp! Quero saber mais sobre a categoria "${cat.title}".`;
+
   return (
     <a
-      href="#contato"
+      href={whatsappHref(message)}
+      target="_blank"
+      rel="noreferrer"
       className="sl-cat"
       style={{ ["--cat-accent" as string]: accent }}
     >
@@ -367,6 +388,7 @@ function CategoryCard({ cat, idx }: { cat: (typeof CATEGORIES)[number]; idx: num
           ))}
         </ul>
         <div className="sl-cat-foot">
+          <WhatsIcon size={14} color="currentColor" />
           <span>Consultar no WhatsApp</span>
           <ArrowRight size={16} />
         </div>
@@ -423,6 +445,21 @@ function About() {
             década. Atendemos desde a vovó que precisa de detergente até o restaurante que
             abastece a cozinha toda semana.
           </p>
+          <div className="sl-about-ctas">
+            <a
+              className="sl-btn sl-btn-primary"
+              href={WHATSAPP_DEFAULT_HREF}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <WhatsIcon size={20} />
+              Chamar no WhatsApp
+            </a>
+            <a className="sl-btn sl-btn-ghost" href={PHONE_TEL_HREF}>
+              <PhoneIcon />
+              Ligar agora
+            </a>
+          </div>
         </div>
         <div className="sl-feat-list">
           {FEATURES.map((f) => (
@@ -479,6 +516,22 @@ function Contact() {
             Paulista, Itupeva e Cabreúva.
           </p>
 
+          <div className="sl-contact-quick">
+            <a
+              className="sl-btn sl-btn-primary"
+              href={WHATSAPP_DEFAULT_HREF}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <WhatsIcon size={20} />
+              Ir direto pro WhatsApp
+            </a>
+            <a className="sl-btn sl-btn-ghost sl-btn-ghost-on-dark" href={PHONE_TEL_HREF}>
+              <PhoneIcon />
+              Ligar
+            </a>
+          </div>
+
           <ul className="sl-contact-list">
             <li>
               <a
@@ -511,8 +564,10 @@ function Contact() {
         </div>
 
         <form className="sl-contact-form" onSubmit={submit}>
-          <h3>Solicite seu orçamento</h3>
-          <p className="sl-form-sub">Preencha que abrimos o WhatsApp já com sua mensagem.</p>
+          <h3>Prefere mandar tudo de uma vez?</h3>
+          <p className="sl-form-sub">
+            Preenche os detalhes que a gente abre o WhatsApp com tudo pronto pra enviar.
+          </p>
 
           <label className="sl-field">
             <span>Seu nome</span>
@@ -598,10 +653,20 @@ function Footer() {
               <a href="#sobre">Sobre nós</a>
             </li>
             <li>
-              <a href="#contato">Contato</a>
+              <a href={WHATSAPP_DEFAULT_HREF} target="_blank" rel="noreferrer">
+                Falar no WhatsApp
+              </a>
             </li>
             <li>
-              <a href="#contato">Trabalhe conosco</a>
+              <a
+                href={whatsappHref(
+                  "Olá Star Limp! Tenho interesse em trabalhar com vocês. Posso mandar meu currículo?",
+                )}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Trabalhe conosco
+              </a>
             </li>
           </ul>
         </div>
@@ -624,7 +689,7 @@ function Footer() {
         </div>
       </div>
       <div className="sl-footer-bar">
-        <span>© 2026 Star Limp · Várzea Paulista/SP · CNPJ ##.###.###/0001-##</span>
+        <span>© 2026 Star Limp · Várzea Paulista/SP</span>
         <span>Site desenhado com carinho ★</span>
       </div>
     </footer>

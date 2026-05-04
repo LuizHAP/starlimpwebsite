@@ -599,8 +599,25 @@ button { font-family: inherit; }
   color: var(--sl-ink-soft);
   line-height: 1.5;
 }
+.sl-about-ctas {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin-top: 28px;
+}
 @media (max-width: 900px) {
   .sl-about-grid { grid-template-columns: 1fr; gap: 32px; }
+}
+
+.sl-contact-quick {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  margin: 0 0 28px;
+}
+.sl-btn-ghost-on-dark {
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  border: 1.5px solid rgba(255, 255, 255, .2);
+}
+.sl-btn-ghost-on-dark:hover {
+  background: rgba(255, 255, 255, .18);
 }
 
 /* ─── Tips ─────────────────────────────────────────────────────────────── */
