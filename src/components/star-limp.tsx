@@ -659,9 +659,11 @@ export default function StarLimp() {
   return (
     <>
       <Hero dark={dark} onToggleDark={() => setDark((v) => !v)} />
-      <Categories />
-      <About />
-      <Contact />
+      <main id="main">
+        <Categories />
+        <About />
+        <Contact />
+      </main>
       <Footer />
       <WhatsFloat />
     </>
