@@ -19,12 +19,13 @@
   --sl-radius: 22px;
   --sl-radius-sm: 14px;
 
-  /* Palette: Azul + Cítrico */
-  --sl-primary: #1B6FE0;
+  /* Palette: Star Limp brand */
+  --sl-primary: #0098D8;
   --sl-primary-ink: #ffffff;
   --sl-accent: #FFD23F;
   --sl-accent-ink: #1A1A1A;
-  --sl-hero-card: #1B6FE0;
+  --sl-hero-card: #0098D8;
+  --sl-brand-text: #2B2B2B;
 }
 
 :root[data-theme="dark"] {
@@ -43,6 +44,7 @@
   --sl-footer-bg: #050709;
   --sl-shadow-card: 0 24px 56px rgba(0, 0, 0, .5);
   --sl-shadow-soft: 0 18px 44px rgba(0, 0, 0, .4);
+  --sl-brand-text: #F2F4F7;
 }
 
 * { box-sizing: border-box; }
@@ -83,22 +85,12 @@ button { font-family: inherit; }
 }
 
 .sl-brand {
-  display: flex; align-items: center; gap: 12px;
-  font-family: var(--font-bricolage), 'Bricolage Grotesque', sans-serif;
-  font-size: 22px;
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
   color: var(--sl-ink);
+  line-height: 0;
 }
-.sl-brand-mark {
-  width: 40px; height: 40px;
-  border-radius: 12px;
-  display: grid; place-items: center;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
-  flex-shrink: 0;
-  background: var(--sl-primary);
-}
-.sl-brand-name b { font-weight: 800; }
-.sl-brand-name .sl-brand-accent { color: var(--sl-primary); }
+.sl-brand svg { display: block; }
 
 .sl-nav-links {
   list-style: none; display: flex; gap: 32px;
@@ -827,7 +819,6 @@ button { font-family: inherit; }
   padding: 72px 56px 28px;
 }
 .sl-footer .sl-brand { color: #fff; }
-.sl-footer .sl-brand-name b { color: #fff; }
 .sl-footer-grid {
   max-width: 1400px; margin: 0 auto;
   display: grid;

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState, type FormEvent } from "react";
+import BrandLogo from "./brand-logo";
 import {
   ArrowRight,
   CloseIcon,
@@ -11,7 +12,6 @@ import {
   PhoneIcon,
   PinIcon,
   Sparkle,
-  StarLogo,
   SunIcon,
   WhatsIcon,
 } from "./icons";
@@ -103,16 +103,10 @@ const HERO_BUBBLES: Array<{
 const KIND_OPTIONS = ["Casa", "Empresa", "Condomínio", "Revenda"] as const;
 type Kind = (typeof KIND_OPTIONS)[number];
 
-function Brand() {
+function Brand({ variant = "default" }: { variant?: "default" | "onDark" }) {
   return (
-    <a href="#top" className="sl-brand">
-      <span className="sl-brand-mark">
-        <StarLogo size={22} color="#fff" />
-      </span>
-      <span className="sl-brand-name">
-        <b>Star</b>
-        <span className="sl-brand-accent">Limp</span>
-      </span>
+    <a href="#top" className="sl-brand" aria-label="Star Limp - página inicial">
+      <BrandLogo height={40} variant={variant} />
     </a>
   );
 }
@@ -167,14 +161,13 @@ function Nav({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }
       {open && (
         <div className="sl-mobile-menu">
           <div className="sl-mobile-head">
-            <a href="#top" className="sl-brand" onClick={() => setOpen(false)}>
-              <span className="sl-brand-mark">
-                <StarLogo size={22} color="#fff" />
-              </span>
-              <span className="sl-brand-name">
-                <b>Star</b>
-                <span className="sl-brand-accent">Limp</span>
-              </span>
+            <a
+              href="#top"
+              className="sl-brand"
+              onClick={() => setOpen(false)}
+              aria-label="Star Limp - página inicial"
+            >
+              <BrandLogo height={36} />
             </a>
             <button
               type="button"
@@ -582,7 +575,7 @@ function Footer() {
     <footer className="sl-footer">
       <div className="sl-footer-grid">
         <div>
-          <Brand />
+          <Brand variant="onDark" />
           <p className="sl-footer-tag">
             Produtos de limpeza para casa, empresa e indústria. Entregamos em Várzea Paulista e
             região há mais de 12 anos.
