@@ -16,7 +16,9 @@ import {
   WhatsIcon,
 } from "./icons";
 
-const WHATSAPP_NUMBER = "5511999998888";
+const WHATSAPP_NUMBER = "5511975137031";
+const WHATSAPP_DISPLAY = "(11) 97513-7031";
+const PHONE_DISPLAY = "(11) 4526-1003";
 
 const CATEGORIES: Array<{
   id: string;
@@ -69,30 +71,6 @@ const CATEGORIES: Array<{
     items: ["Shampoo automotivo", "Cera", "Pretinho"],
     img: "https://images.unsplash.com/photo-1607860108855-64acf2078ed9?w=800&q=80",
     tag: "Novidade",
-  },
-];
-
-const TIPS = [
-  {
-    cat: "Cozinha",
-    title: "Como tirar gordura do exaustor sem esfregar feito louco",
-    excerpt: "Um truque simples com desengordurante diluído e água quente que solta tudo em 10 minutos.",
-    read: "3 min de leitura",
-    img: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80",
-  },
-  {
-    cat: "Banheiro",
-    title: "A ordem certa de limpar o banheiro (a maioria erra)",
-    excerpt: "Começar pelo vaso é o erro clássico. Veja a sequência que economiza tempo e produto.",
-    read: "4 min de leitura",
-    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=900&q=80",
-  },
-  {
-    cat: "Empresarial",
-    title: "Checklist semanal de limpeza para restaurantes",
-    excerpt: "Lista usada pelos nossos clientes da praça da alimentação pra passar em vigilância tranquila.",
-    read: "6 min de leitura",
-    img: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&q=80",
   },
 ];
 
@@ -154,9 +132,6 @@ function Nav({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }
           <a href="#categorias">Categorias</a>
         </li>
         <li>
-          <a href="#dicas">Dicas</a>
-        </li>
-        <li>
           <a href="#sobre">Sobre</a>
         </li>
         <li>
@@ -212,11 +187,6 @@ function Nav({ dark, onToggleDark }: { dark: boolean; onToggleDark: () => void }
             <li>
               <a href="#categorias" onClick={() => setOpen(false)}>
                 Categorias <ArrowRight size={18} />
-              </a>
-            </li>
-            <li>
-              <a href="#dicas" onClick={() => setOpen(false)}>
-                Dicas <ArrowRight size={18} />
               </a>
             </li>
             <li>
@@ -474,56 +444,6 @@ function About() {
   );
 }
 
-function Tips() {
-  return (
-    <section id="dicas" className="sl-section">
-      <div className="sl-section-head sl-section-head--row">
-        <div>
-          <span className="sl-eyebrow sl-eyebrow-light">
-            <span className="sl-dot sl-dot--primary" />
-            Dicas que funcionam
-          </span>
-          <h2 className="sl-section-title">
-            Faxina sem
-            <br />
-            sofrer.
-          </h2>
-        </div>
-        <p className="sl-section-sub" style={{ maxWidth: 380 }}>
-          Truques testados por quem vende limpeza todo dia. Nada de fórmula mágica — só o que
-          economiza seu tempo de verdade.
-        </p>
-      </div>
-      <div className="sl-tip-grid">
-        {TIPS.map((tip, i) => (
-          <article key={i} className="sl-tip">
-            <div className="sl-tip-art">
-              <Image
-                className="sl-tip-img"
-                src={tip.img}
-                alt={tip.title}
-                fill
-                sizes="(max-width: 900px) 100vw, 33vw"
-                loading="lazy"
-              />
-            </div>
-            <div className="sl-tip-body">
-              <span className="sl-tip-cat">
-                {tip.cat} · {tip.read}
-              </span>
-              <h3>{tip.title}</h3>
-              <p>{tip.excerpt}</p>
-              <span className="sl-tip-link">
-                Ler dica completa <ArrowRight size={14} />
-              </span>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Contact() {
   const [form, setForm] = useState<{ name: string; phone: string; kind: Kind; message: string }>({
     name: "",
@@ -565,13 +485,16 @@ function Contact() {
 
           <ul className="sl-contact-list">
             <li>
-              <PhoneIcon /> (11) 99999-8888 · WhatsApp
+              <WhatsIcon size={18} color="currentColor" /> {WHATSAPP_DISPLAY} · WhatsApp
+            </li>
+            <li>
+              <PhoneIcon /> {PHONE_DISPLAY} · fixo
             </li>
             <li>
               <PinIcon /> Várzea Paulista, SP — atendemos toda a região
             </li>
             <li>
-              <ClockIcon /> Seg–Sex 8h–18h · Sáb 8h–13h
+              <ClockIcon /> Seg–Sex 8h30–17h · Sáb 8h30–12h
             </li>
           </ul>
         </div>
@@ -664,9 +587,6 @@ function Footer() {
               <a href="#sobre">Sobre nós</a>
             </li>
             <li>
-              <a href="#dicas">Dicas de limpeza</a>
-            </li>
-            <li>
               <a href="#contato">Contato</a>
             </li>
             <li>
@@ -677,9 +597,10 @@ function Footer() {
         <div>
           <h5>Atendimento</h5>
           <ul>
-            <li>(11) 99999-8888</li>
+            <li>{WHATSAPP_DISPLAY} · WhatsApp</li>
+            <li>{PHONE_DISPLAY} · fixo</li>
             <li>contato@starlimp.com.br</li>
-            <li>Seg–Sex 8h–18h · Sáb 8h–13h</li>
+            <li>Seg–Sex 8h30–17h · Sáb 8h30–12h</li>
           </ul>
         </div>
       </div>
@@ -721,7 +642,6 @@ export default function StarLimp() {
       <Hero dark={dark} onToggleDark={() => setDark((v) => !v)} />
       <Categories />
       <About />
-      <Tips />
       <Contact />
       <Footer />
       <WhatsFloat />
