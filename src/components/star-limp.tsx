@@ -19,6 +19,9 @@ import {
 const WHATSAPP_NUMBER = "5511975137031";
 const WHATSAPP_DISPLAY = "(11) 97513-7031";
 const PHONE_DISPLAY = "(11) 4526-1003";
+const PHONE_DIGITS = "1145261003";
+const WHATSAPP_DEFAULT_HREF = `https://wa.me/${WHATSAPP_NUMBER}?text=Ol%C3%A1%20Star%20Limp!%20Gostaria%20de%20fazer%20um%20pedido.`;
+const PHONE_TEL_HREF = `tel:+55${PHONE_DIGITS}`;
 
 const CATEGORIES: Array<{
   id: string;
@@ -485,10 +488,25 @@ function Contact() {
 
           <ul className="sl-contact-list">
             <li>
-              <WhatsIcon size={18} color="currentColor" /> {WHATSAPP_DISPLAY} · WhatsApp
+              <a
+                className="sl-contact-link"
+                href={WHATSAPP_DEFAULT_HREF}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <WhatsIcon size={18} color="currentColor" />
+                <span>
+                  {WHATSAPP_DISPLAY} · <span className="sl-contact-link-cta">enviar mensagem no WhatsApp</span>
+                </span>
+              </a>
             </li>
             <li>
-              <PhoneIcon /> {PHONE_DISPLAY} · fixo
+              <a className="sl-contact-link" href={PHONE_TEL_HREF}>
+                <PhoneIcon />
+                <span>
+                  {PHONE_DISPLAY} · <span className="sl-contact-link-cta">ligar agora</span>
+                </span>
+              </a>
             </li>
             <li>
               <PinIcon /> Várzea Paulista, SP — atendemos toda a região
@@ -597,9 +615,17 @@ function Footer() {
         <div>
           <h5>Atendimento</h5>
           <ul>
-            <li>{WHATSAPP_DISPLAY} · WhatsApp</li>
-            <li>{PHONE_DISPLAY} · fixo</li>
-            <li>contato@starlimp.com.br</li>
+            <li>
+              <a href={WHATSAPP_DEFAULT_HREF} target="_blank" rel="noreferrer">
+                {WHATSAPP_DISPLAY} · WhatsApp
+              </a>
+            </li>
+            <li>
+              <a href={PHONE_TEL_HREF}>{PHONE_DISPLAY} · ligar</a>
+            </li>
+            <li>
+              <a href="mailto:contato@starlimp.com.br">contato@starlimp.com.br</a>
+            </li>
             <li>Seg–Sex 8h30–17h · Sáb 8h30–12h</li>
           </ul>
         </div>
@@ -616,7 +642,7 @@ function WhatsFloat() {
   return (
     <a
       className="sl-wfloat"
-      href={`https://wa.me/${WHATSAPP_NUMBER}?text=Ol%C3%A1%20Star%20Limp!%20Gostaria%20de%20fazer%20um%20pedido.`}
+      href={WHATSAPP_DEFAULT_HREF}
       target="_blank"
       rel="noreferrer"
       aria-label="Falar no WhatsApp"
