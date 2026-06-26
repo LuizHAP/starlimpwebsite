@@ -98,7 +98,7 @@ export const metadata: Metadata = {
     email: true,
   },
   verification: {
-    google: "fx3G6NQ5nAbW4j3apmPshAy2bfz9wfKSy53mpNl_dAA",
+    google: "GZNxF2q4D9DHuIF5_7pksepwESxAyKggi0bRYQ-uqfs",
   },
 };
 
