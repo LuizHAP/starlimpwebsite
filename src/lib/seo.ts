@@ -1,4 +1,4 @@
-export const SITE_URL = "https://starlimp-jundiai.vercel.app";
+export const SITE_URL = "https://starlimpwebsite.vercel.app";
 export const SITE_NAME = "Star Limp";
 export const BUSINESS_NAME = "Star Limp - Produtos de Limpeza";
 export const DEFAULT_TITLE =
