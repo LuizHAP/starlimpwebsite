@@ -111,6 +111,9 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" data-theme="light" className={`${inter.variable} ${bricolage.variable}`}>
+      <head>
+        <meta name="google-site-verification" content="GZNxF2q4D9DHuIF5_7pksepwESxAyKggi0bRYQ-uqfs" />
+      </head>
       <body>
         {children}
         <Analytics />
