@@ -97,6 +97,9 @@ export const metadata: Metadata = {
     address: true,
     email: true,
   },
+  verification: {
+    google: "fx3G6NQ5nAbW4j3apmPshAy2bfz9wfKSy53mpNl_dAA",
+  },
 };
 
 export default function RootLayout({
