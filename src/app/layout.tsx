@@ -3,10 +3,10 @@ import { Inter, Bricolage_Grotesque } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import {
-  BUSINESS_NAME,
   DEFAULT_DESCRIPTION,
   DEFAULT_TITLE,
   KEYWORDS,
+  SITE_NAME,
   SITE_URL,
   buildJsonLd,
 } from "@/lib/seo";
@@ -38,11 +38,11 @@ export const metadata: Metadata = {
     template: "%s · Star Limp",
   },
   description: DEFAULT_DESCRIPTION,
-  applicationName: BUSINESS_NAME,
+  applicationName: SITE_NAME,
   keywords: KEYWORDS,
-  authors: [{ name: BUSINESS_NAME }],
-  creator: BUSINESS_NAME,
-  publisher: BUSINESS_NAME,
+  authors: [{ name: SITE_NAME }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   category: "shopping",
   alternates: {
     canonical: "/",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: SITE_URL,
-    siteName: BUSINESS_NAME,
+    siteName: SITE_NAME,
     title: DEFAULT_TITLE,
     description: DEFAULT_DESCRIPTION,
     images: [
@@ -111,14 +111,17 @@ export default function RootLayout({
 
   return (
     <html lang="pt-BR" data-theme="light" className={`${inter.variable} ${bricolage.variable}`}>
-      <body>
-        {children}
-        <Analytics />
-        <SpeedInsights />
+      <head>
+        {/* Site-name signal for Google SERP — keep in <head> on the homepage */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+      </head>
+      <body>
+        {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

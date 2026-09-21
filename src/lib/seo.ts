@@ -1,4 +1,6 @@
 export const SITE_URL = "https://starlimpwebsite.vercel.app";
+/** Hostname only — used as Google site-name fallback (must be lowercase). */
+export const SITE_HOST = "starlimpwebsite.vercel.app";
 export const SITE_NAME = "Star Limp";
 export const BUSINESS_NAME = "Star Limp - Produtos de Limpeza";
 export const DEFAULT_TITLE =
@@ -70,8 +72,12 @@ export function buildJsonLd() {
       "@context": "https://schema.org",
       "@type": ["LocalBusiness", "Store"],
       "@id": `${SITE_URL}/#business`,
-      name: BUSINESS_NAME,
-      alternateName: ["Star Limp Jundiaí", "Star Limp Várzea Paulista"],
+      name: SITE_NAME,
+      alternateName: [
+        BUSINESS_NAME,
+        "Star Limp Jundiaí",
+        "Star Limp Várzea Paulista",
+      ],
       url: SITE_URL,
       logo: `${SITE_URL}/star-limp-logo/header-logo-transparent.png`,
       image: `${SITE_URL}/star-limp-logo/header-logo.png`,
@@ -134,17 +140,21 @@ export function buildJsonLd() {
       "@context": "https://schema.org",
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
-      name: BUSINESS_NAME,
+      name: SITE_NAME,
+      alternateName: BUSINESS_NAME,
       url: SITE_URL,
       logo: `${SITE_URL}/star-limp-logo/header-logo-transparent.png`,
       sameAs,
     },
+    // WebSite.name is the primary signal Google uses for SERP site names.
+    // On *.vercel.app, weak signals fall back to the parent brand "Vercel".
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
-      url: SITE_URL,
-      name: BUSINESS_NAME,
+      url: `${SITE_URL}/`,
+      name: SITE_NAME,
+      alternateName: [BUSINESS_NAME, SITE_HOST],
       inLanguage: "pt-BR",
       publisher: { "@id": `${SITE_URL}/#organization` },
     },
